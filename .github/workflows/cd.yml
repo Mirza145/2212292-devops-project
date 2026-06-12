@@ -43,8 +43,8 @@ jobs:
             cd devops-project
             git pull origin main
             
-            # Export Docker username for docker-compose.prod.yml
-            export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
+            # The Bulletproof Fix: Write secrets directly to a .env file
+            echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" > .env
             
             # Pull latest images and restart the containers
             sudo docker compose -f docker-compose.prod.yml pull
